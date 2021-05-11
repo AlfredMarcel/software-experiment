@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Index</title>
+</head>
+<body>
+
+<h1>Here is the user index</h1>
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <h1>学院表</h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>学院编号</td>
+            <td>学院名称</td>
+            <td>问卷编号</td>
+            <td>操作</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="college : ${college_list}">
+            <td th:text="${college.Id}"></td>
+            <td th:text="${college.Name}"></td>
+            <td th:text="${college.FormId}"></td>
+            <td> <a th:href="@{'/edit/'+${college.Id}}">编辑</a>  <a th:href="@{'/del/'+${college.Id}}">删除</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
