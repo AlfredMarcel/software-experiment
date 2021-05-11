@@ -42,6 +42,11 @@ public class UserInfoService {
         }
     }
 
+    /*查找用户*/
+    public UserInfo findUser(String id){
+        return userInfoDao.getOne(id);
+    }
+
 
 
 }

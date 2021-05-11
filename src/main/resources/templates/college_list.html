@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<h1>Here is the user index</h1>
+<a href="/admin/college/add">学院添加</a>
+<a href="/admin/index">返回</a>
 
 <div style="text-align: center;margin:0 auto;width: 1000px; ">
     <h1>学院表</h1>
@@ -22,7 +23,7 @@
             <td th:text="${college.Id}"></td>
             <td th:text="${college.Name}"></td>
             <td th:text="${college.FormId}"></td>
-            <td> <a th:href="@{'/edit/'+${college.Id}}">编辑</a>  <a th:href="@{'/del/'+${college.Id}}">删除</a></td>
+            <td> <a th:href="@{'/admin/college/edit/'+${college.Id}}">编辑</a>  <a th:href="@{'/admin/college/del/'+${college.Id}}">删除</a></td>
         </tr>
     </table>
 </div>

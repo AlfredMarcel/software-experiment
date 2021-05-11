@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -47,17 +49,44 @@ public class UserInfoController {
     }
 
     @PostMapping("/login")
-    public String loginPost(@ModelAttribute UserInfo userInfo){
+    public String loginPost(HttpServletRequest request, @ModelAttribute UserInfo userInfo){
         int author=userInfoService.judge(userInfo.getSno(),userInfo.getPassword());
-        if(author==10){
-            return "/student/index";
-        }else if(author==20){
-            return "/teacher/index";
-        }else if(author==30){
-            return "/admin/index";
-        }else{
-            return "redirect:/index";
+        if(author!=-1){
+            UserInfo new_userInfo=userInfoService.findUser(userInfo.getSno());
+
+            /*个人信息，登录后存进session*/
+            HttpSession session = request.getSession();
+            session.setAttribute("user_id", new_userInfo.getSno());
+            session.setAttribute("user_college", new_userInfo.getCollege());
+            session.setAttribute("user_authority", new_userInfo.getAuthority());
+
+            if (author == 10) {
+                return "redirect:/student/index";
+            } else if (author == 20) {
+                return "redirect:/teacher/index";
+            } else if (author == 30) {
+                return "redirect:/admin/index";
+            }
         }
+        return "redirect:/index";
+    }
+
+    /*登出功能，我还没写*/
+
+    /*跳转登录页面*/
+    @GetMapping("/student/index")
+    public String stuLogin(){
+        return "/student/index";
+    }
+
+    @GetMapping("/teacher/index")
+    public String teaLogin(){
+        return "/teacher/index";
+    }
+
+    @GetMapping("/admin/index")
+    public String adminLogin(){
+        return "/admin/index";
     }
 
 
