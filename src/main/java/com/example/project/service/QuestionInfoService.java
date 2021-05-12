@@ -1,0 +1,57 @@
+package com.example.project.service;
+
+/**
+ * @author: Marcel
+ * @date: 2021/5/12 13:32
+ */
+
+
+import com.example.project.bean.QuestionInfo;
+import com.example.project.repository.QuestionInfoDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+
+@Service
+public class QuestionInfoService {
+
+    @Autowired
+    private QuestionInfoDao questionInfoDao;
+
+    /*保存问题信息*/
+    public void addQuestion(QuestionInfo questionInfo){
+        questionInfo.setCreateTime(new Date());
+        questionInfo.setModifyTime(new Date());
+        questionInfoDao.save(questionInfo);
+    }
+
+    /*查询所有问题*/
+    public List<QuestionInfo> getAllQuestion(){
+        return questionInfoDao.findByDeleteTimeIsNull();
+    }
+
+    /*根据id查询单个问题*/
+    public QuestionInfo getQuestionById(String id){
+        int idd=Integer.parseInt(id);
+        return questionInfoDao.getOne(idd);
+    }
+
+    /*更新问题*/
+    public void updateQuestion(QuestionInfo questionInfo){
+        /*原数据传递到视图层，再回来，不在表单里的元素就没了，这个问题尚未解决*/
+        questionInfo.setCreateTime(new Date());
+        /* 以下是正常代码 */
+        questionInfo.setModifyTime(new Date());
+        questionInfoDao.save(questionInfo);
+    }
+
+    /*软删除*/
+    public void delQuestion(String id){
+        int idd=Integer.parseInt(id);
+        QuestionInfo tmp=questionInfoDao.getOne(idd);
+        tmp.setDeleteTime(new Date());
+        questionInfoDao.save(tmp);
+    }
+}

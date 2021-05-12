@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Index</title>
+</head>
+<body>
+
+<a href="/admin/question/add">学院添加</a>
+<a href="/admin/index">返回</a>
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <h1>问题表</h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>问题编号</td>
+            <td>问题名称</td>
+            <td>问卷题面</td>
+            <td>问题类型</td>
+            <td>高危判定</td>
+            <td>操作</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="question : ${question_list}">
+            <td th:text="${question.id}"></td>
+            <td th:text="${question.name}"></td>
+            <td th:text="${question.content}"></td>
+            <td th:text="${question.type}"></td>
+            <td th:text="${question.emergency}"></td>
+            <td> <a th:href="@{'/admin/question/edit/'+${question.id}}">编辑</a>  <a th:href="@{'/admin/question/del/'+${question.id}}">删除</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
