@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+<br><br>
+<h2 style="color:green">Form</h2>
+<br><br>
+
+<!-- post到action-->
+<form class="form-horizontal" role="form" action="#" th:action="@{/admin/form/edit}" method="post">
+
+    <div class="form-group" style="width:300px">
+        <label for="college_id" class="col-sm-2 control-label">问卷名称</label>
+        <div class="col-sm-10">
+            <input type="text"  th:field="${form.name}" class="form-control" id="college_id" placeholder="Enter college's id">
+        </div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="college_name" class="col-sm-2 control-label">问卷问题数</label>
+        <div class="col-sm-10">
+            <input type="text" th:field="${form.formSize}" class="form-control" id="college_name" placeholder="Enter college's name">
+        </div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques1" class="col-sm-2 control-label">问题一(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques1" th:field="${form.ques1}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques2" class="col-sm-2 control-label">问题二(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques2" th:field="${form.ques2}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques3" class="col-sm-2 control-label">问题三(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques3" th:field="${form.ques3}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques4" class="col-sm-2 control-label">问题四(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques4" th:field="${form.ques4}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques5" class="col-sm-2 control-label">问题五(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques5" th:field="${form.ques5}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques6" class="col-sm-2 control-label">问题六(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques6" th:field="${form.ques6}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques7" class="col-sm-2 control-label">问题七(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques7" th:field="${form.ques7}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques8" class="col-sm-2 control-label">问题八(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques8" th:field="${form.ques8}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques9" class="col-sm-2 control-label">问题九(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques9" th:field="${form.ques9}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques10" class="col-sm-2 control-label">问题十(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques10" th:field="${form.ques10}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques11" class="col-sm-2 control-label">问题十一(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques11" th:field="${form.ques11}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques12" class="col-sm-2 control-label">问题十二(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques12" th:field="${form.ques12}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques13" class="col-sm-2 control-label">问题十三(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques13" th:field="${form.ques13}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques14" class="col-sm-2 control-label">问题十四(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques14" th:field="${form.ques14}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques15" class="col-sm-2 control-label">问题十五(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques15" th:field="${form.ques15}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques16" class="col-sm-2 control-label">问题十六(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques16" th:field="${form.ques16}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques17" class="col-sm-2 control-label">问题十七(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques17" th:field="${form.ques17}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques18" class="col-sm-2 control-label">问题十八(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques18" th:field="${form.ques18}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques19" class="col-sm-2 control-label">问题十九(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques19" th:field="${form.ques19}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group" style="width:300px">
+        <label for="ques20" class="col-sm-2 control-label">问题二十(可为空)</label>
+        <div class="col-sm-10">
+            <select id="ques20" th:field="${form.ques20}">
+                <option value="">空</option>
+                <option th:each="item :${questions}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+            </select></div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <button type="submit" class="btn btn-primary" id="btn">Submit</button>
+            <input type="reset" class="btn btn-warning" value="Reset" />
+        </div>
+    </div>
+</form>
+
+<a href="/admin/form/index">返回</a>
+
+
+</body>
+</html>

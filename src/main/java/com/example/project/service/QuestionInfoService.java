@@ -32,6 +32,11 @@ public class QuestionInfoService {
         return questionInfoDao.findByDeleteTimeIsNull();
     }
 
+    /*查询所有问题的id与名称*/
+    public List<QuestionInfo> getAllSimpleQuestion(){
+        return questionInfoDao.findIdNameByDeleteTimeIsNull();
+    }
+
     /*根据id查询单个问题*/
     public QuestionInfo getQuestionById(String id){
         int idd=Integer.parseInt(id);
