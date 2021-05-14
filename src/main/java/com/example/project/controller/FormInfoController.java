@@ -1,6 +1,7 @@
 package com.example.project.controller;
 
 import com.example.project.bean.FormInfo;
+import com.example.project.bean.QuestionInfo;
 import com.example.project.service.FormInfoService;
 import com.example.project.service.QuestionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,10 @@ public class FormInfoController {
     /*预览问卷*/
     @GetMapping("/admin/form/preview/{id}")
     public String previewForm(Model model, @PathVariable String id){
-        model.addAttribute("form",formInfoService.getFormById(id));
+        FormInfo formInfo=formInfoService.getFormById(id);
+        List<QuestionInfo> questionInfos=formInfoService.parseFormToQuestions(formInfo);
+        model.addAttribute("questions",questionInfos);
+        model.addAttribute("form_name",formInfo.getName());
         return "/admin/forms/preview_form";
     }
 
