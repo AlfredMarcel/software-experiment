@@ -23,7 +23,7 @@
         <select id="ques1" >
             <option value="">空</option>
             <option th:each="it,idx :${item.options}"
-                    th:value="${idx}"
+                    th:value="${idx.index}"
                     th:text="${it}">
         </select>
     </div>

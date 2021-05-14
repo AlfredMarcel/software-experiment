@@ -23,11 +23,11 @@ public class CollegeInfo {
     /*各键与数据库字段对应*/
     /*不能带下划线，否则JPA解析会出错*/
     @Id
-    private String Id;
+    private String id;
     @Column(length=20)
-    private String Name;
+    private String name;
     @Column
-    private int FormId;
+    private int formId;
 
     /*自动更新时间戳*/
     @CreatedDate
@@ -39,9 +39,9 @@ public class CollegeInfo {
     private Date deleteTime;
 
     public CollegeInfo(String id,String name,int form_id){
-        this.Id=id;
-        this.Name=name;
-        this.FormId=form_id;
+        this.id=id;
+        this.name=name;
+        this.formId=form_id;
     }
 
     public CollegeInfo() {

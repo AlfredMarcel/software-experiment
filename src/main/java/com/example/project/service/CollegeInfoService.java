@@ -54,4 +54,9 @@ public class CollegeInfoService {
         collegeInfoDao.save(temp);
     }
 
+    /*通过学院编号查到学院使用的问卷号*/
+    public int findFormIdById(String id){
+        CollegeInfo tmp=collegeInfoDao.getOne(id);
+        return tmp.getFormId();
+    }
 }

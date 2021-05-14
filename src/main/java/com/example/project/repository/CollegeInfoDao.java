@@ -16,4 +16,7 @@ import java.util.List;
 public interface CollegeInfoDao extends JpaRepository<CollegeInfo,String> {
 
     List<CollegeInfo> findByDeleteTimeIsNull();
+
+    /*从学院号获取问卷编号*/
+    int findFormIdById(String id);
 }

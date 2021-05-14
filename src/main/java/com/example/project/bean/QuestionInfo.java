@@ -49,6 +49,7 @@ public class QuestionInfo {
     @Column
     protected Date deleteTime;
 
+    /*不做持久化*/
     @Transient
     /*可能存在的问题的多个选项*/
     List<String> options;

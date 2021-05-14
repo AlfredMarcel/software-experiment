@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>健康信息打卡</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<a href="/teacher/index">返回</a>
+
+<br><br>
+<h2 style="color:green" th:text="${form_name}"></h2>
+<br><br>
+
+<form class="form-horizontal" role="form" action="#" th:action="@{/teacher/daily}" method="post">
+
+    <div hidden>
+        <label>
+            <input type="text"  th:field="${new_record.userId}" class="form-control"  placeholder="Enter college's id" >
+        </label>
+    </div>
+
+    <div hidden>
+        <label>
+            <input type="text"  th:field="${new_record.formId}" class="form-control"  placeholder="Enter college's id" >
+        </label>
+    </div>
+
+    <div th:each="item,item_index:${questions}">
+        <label th:text="${item.content}"></label>
+        <div th:if="${item_index.count eq 1}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer1}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques1" th:field="${new_record.answer1}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 2}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer2}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques2" th:field="${new_record.answer2}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 3}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer3}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques3" th:field="${new_record.answer3}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 4}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer4}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques4" th:field="${new_record.answer4}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 5}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer5}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques5" th:field="${new_record.answer5}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 6}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer6}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques6" th:field="${new_record.answer6}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 7}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer7}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques7" th:field="${new_record.answer7}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 8}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer8}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques8" th:field="${new_record.answer8}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 9}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer9}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques9" th:field="${new_record.answer9}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 10}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer10}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques10" th:field="${new_record.answer10}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 11}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer11}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques11" th:field="${new_record.answer11}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 12}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer12}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques12" th:field="${new_record.answer12}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 13}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer13}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques13" th:field="${new_record.answer13}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 14}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer14}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques14" th:field="${new_record.answer14}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 15}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer15}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques15" th:field="${new_record.answer15}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 16}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer16}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques16" th:field="${new_record.answer16}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 17}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer17}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques17" th:field="${new_record.answer17}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 18}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer18}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques18" th:field="${new_record.answer18}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 19}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer19}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques19" th:field="${new_record.answer19}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+        <div th:if="${item_index.count eq 20}">
+            <div class="col-sm-10" th:if="${item.type ne 1}">
+                <input type="text" th:field="${new_record.answer20}" class="form-control"  placeholder="Enter college's id">
+
+            </div>
+            <div class="col-sm-10" th:if="${item.type eq 1}">
+                <select id="ques20" th:field="${new_record.answer20}" >
+                    <option value="">空</option>
+                    <option th:each="it,idx :${item.options}"
+                            th:value="${idx.index}"
+                            th:text="${it}">
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <button type="submit" class="btn btn-primary" id="btn">Submit</button>
+            <input type="reset" class="btn btn-warning" value="Reset" />
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
