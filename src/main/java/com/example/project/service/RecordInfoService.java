@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: Marcel
@@ -23,5 +24,10 @@ public class RecordInfoService {
         recordInfo.setCreateTime(new Date());
         recordInfo.setModifyTime(new Date());
         recordInfoDao.save(recordInfo);
+    }
+
+    /*查看历史打卡信息*/
+    public List<RecordInfo> getHistory(String user_id) {
+        return recordInfoDao.findCreateTimeByUserId(user_id);
     }
 }

@@ -16,4 +16,6 @@ public interface RecordInfoDao extends JpaRepository<RecordInfo, Integer> {
 
     List<RecordInfo> findByDeleteTimeIsNull();
 
+    List<RecordInfo> findCreateTimeByUserId(String id);
+
 }
