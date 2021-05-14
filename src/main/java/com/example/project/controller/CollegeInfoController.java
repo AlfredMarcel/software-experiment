@@ -29,7 +29,7 @@ public class CollegeInfoController {
     @GetMapping("/admin/college/add")
     public String addCollege(Model model){
         model.addAttribute("new_college",new CollegeInfo());
-        return "add_college_form";
+        return "/admin/colleges/add_college_form";
     }
 
     /*@ModelAttribute 从request里拿值实例化对象*/
@@ -42,7 +42,7 @@ public class CollegeInfoController {
     /*学院列表*/
     @GetMapping("/admin/college/index")
     public ModelAndView index(){
-        ModelAndView modelAndView=new ModelAndView("college_list");
+        ModelAndView modelAndView=new ModelAndView("/admin/colleges/college_list");
         List<CollegeInfo> college_list=collegeInfoService.getAllCollege();
         modelAndView.addObject("college_list",college_list);
         return modelAndView;
@@ -51,7 +51,7 @@ public class CollegeInfoController {
     @GetMapping("/admin/college/edit/{id}")
     public String editCollege(Model model, @PathVariable String id){
         model.addAttribute("college",collegeInfoService.getCollegeById(id));
-        return "edit_college_form";
+        return "/admin/colleges/edit_college_form";
     }
     @PostMapping("/admin/college/edit")
     public String editCollegePost(@ModelAttribute CollegeInfo collegeInfo){
