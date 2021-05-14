@@ -20,7 +20,7 @@ public class UserInfoService {
     @Autowired
     private UserInfoDao userInfoDao;
 
-    /*保存用户信息*/
+    /*通过注册保存用户信息*/
     public void addUser(UserInfo userInfo){
         /*邮箱验证功能还没写*/
         userInfo.setVerity(0);
@@ -47,6 +47,58 @@ public class UserInfoService {
         return userInfoDao.getOne(id);
     }
 
+    /*查找所有用户 工号、姓名、学院、身份编号 */
+    public List<UserInfo> getAllUser(){
+        return userInfoDao.findSnoNameCollegeAuthorityByDeleteTimeIsNull();
+    }
 
+    /*管理员在后台添加学生*/
+    public void addStu(UserInfo userInfo){
+        /*默认密码：123456*/
+        userInfo.setPassword("123456");
+        userInfo.setVerity(0);
+        /*身份为学生*/
+        userInfo.setAuthority(10);
+        /*打时间戳*/
+        userInfo.setCreateTime(new Date());
+        userInfo.setModifyTime(new Date());
+        userInfoDao.save(userInfo);
+    }
 
+    /*管理员在后台添加老师*/
+    public void addTea(UserInfo userInfo) {
+        /*默认密码：123456*/
+        userInfo.setPassword("123456");
+        userInfo.setVerity(0);
+        /*身份为教师*/
+        userInfo.setAuthority(20);
+        /*打时间戳*/
+        userInfo.setCreateTime(new Date());
+        userInfo.setModifyTime(new Date());
+        userInfoDao.save(userInfo);
+    }
+
+    /*更新用户信息*/
+    public void updateUser(UserInfo userInfo) {
+        UserInfo tmp=userInfoDao.getOne(userInfo.getSno());
+        tmp.setName(userInfo.getName());
+        tmp.setCollege(userInfo.getCollege());
+        tmp.setModifyTime(new Date());
+        userInfoDao.save(tmp);
+    }
+
+    /*软删除*/
+    public void delUser(String id){
+        UserInfo tmp=userInfoDao.getOne(id);
+        tmp.setDeleteTime(new Date());
+        userInfoDao.save(tmp);
+    }
+
+    /*重置密码*/
+    public void resetPasswd(String id) {
+        UserInfo tmp=userInfoDao.getOne(id);
+        tmp.setPassword("123456");
+        tmp.setModifyTime(new Date());
+        userInfoDao.save(tmp);
+    }
 }

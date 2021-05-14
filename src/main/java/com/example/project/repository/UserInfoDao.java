@@ -14,5 +14,6 @@ import java.util.List;
 @Repository
 public interface UserInfoDao extends JpaRepository<UserInfo,String> {
 
-
+    List<UserInfo> findSnoNameCollegeAuthorityByDeleteTimeIsNull();
+    List<UserInfo> findByDeleteTimeIsNull();
 }

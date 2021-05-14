@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Index</title>
+</head>
+<body>
+
+<a href="/admin/user/addstudent">添加学生</a>
+<a href="/admin/user/addteacher">添加教师</a>
+<a href="/admin/index">返回</a>
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <h1>用户表</h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>工号</td>
+            <td>姓名</td>
+            <td>学院编号</td>
+            <td>身份编号</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="user : ${user_list}">
+            <td th:text="${user.sno}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.college}"></td>
+            <td th:text="${user.authority}"></td>
+            <td> <a th:href="@{'/admin/user/edit/'+${user.sno}}">编辑</a>  <a th:href="@{'/admin/user/reset/'+${user.sno}}">重置密码</a>  <a th:href="@{'/admin/user/del/'+${user.sno}}">删除</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

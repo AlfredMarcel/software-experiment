@@ -22,40 +22,40 @@ import java.util.Date;
 
 public class UserInfo {
     @Id
-    private String Sno;
+    private String sno;
 
     @Column(length=20)
-    private String Name;
+    private String name;
 
     @Column(length=20)
-    private String Hometown;
+    private String hometown;
 
     @Column(length=20)
-    private String Idno;
+    private String idno;
 
     @Column(length=20)
-    private String College;
+    private String college;
 
     @Column(length=40)
-    private String Password;
+    private String password;
 
     @Column(length=20)
-    private String Email;
+    private String email;
 
     @Column
-    private int Verity;
+    private int verity;
 
     @Column
-    private int Authority;
+    private int authority;
 
     /*自动更新时间戳*/
     @CreatedDate
-    private Date CreateTime;
+    private Date createTime;
     @LastModifiedDate
-    private Date ModifyTime;
+    private Date modifyTime;
     /*软删除*/
     @Column
-    private Date DeleteTime;
+    private Date deleteTime;
 
 
     public UserInfo() {

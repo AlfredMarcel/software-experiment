@@ -89,5 +89,75 @@ public class UserInfoController {
         return "/admin/index";
     }
 
+    /*以下是用户管理模块内容*/
+
+    /*查看用户表*/
+    @GetMapping("/admin/user/index")
+    public ModelAndView showUsers(){
+        ModelAndView modelAndView=new ModelAndView("/admin/users/user_list");
+        List<UserInfo> userInfos=userInfoService.getAllUser();
+        modelAndView.addObject("user_list",userInfos);
+        return modelAndView;
+    }
+
+    /*添加单个学生*/
+    @GetMapping("/admin/user/addstudent")
+    public String addStu(Model model){
+        model.addAttribute("new_student",new UserInfo());
+        model.addAttribute("colleges",collegeInfoService.getAllCollege());
+        return "/admin/users/add_stu_form";
+    }
+    @PostMapping("/admin/user/addstudent")
+    public String addStuPost(@ModelAttribute UserInfo userInfo){
+        userInfoService.addStu(userInfo);
+        return "redirect:/admin/user/index";
+    }
+
+    /*添加单个教师*/
+    @GetMapping("/admin/user/addteacher")
+    public String addTea(Model model){
+        model.addAttribute("new_teacher",new UserInfo());
+        model.addAttribute("colleges",collegeInfoService.getAllCollege());
+        return "/admin/users/add_tea_form";
+    }
+    @PostMapping("/admin/user/addteacher")
+    public String addTeaPost(@ModelAttribute UserInfo userInfo){
+        userInfoService.addTea(userInfo);
+        return "redirect:/admin/user/index";
+    }
+
+    /*批量添加学生*/
+
+    /*批量添加教师*/
+
+    /*修改用户信息*/
+    @GetMapping("/admin/user/edit/{id}")
+    public String editUser(Model model,@PathVariable String id){
+        model.addAttribute("user",userInfoService.findUser(id));
+        model.addAttribute("colleges",collegeInfoService.getAllCollege());
+        return "/admin/users/edit_user_form";
+    }
+    @PostMapping("/admin/user/edit")
+    public String editUserPost(@ModelAttribute UserInfo userInfo){
+        userInfoService.updateUser(userInfo);
+        return "redirect:/admin/user/index";
+    }
+
+    /*重置用户密码*/
+    @GetMapping("/admin/user/reset/{id}")
+    public String resetUserPasswd(@PathVariable String id){
+        userInfoService.resetPasswd(id);
+        return "redirect:/admin/user/index";
+    }
+
+    /*删除用户信息*/
+    @GetMapping("/admin/user/edl/{id}")
+    public String delUser(@PathVariable String id){
+        userInfoService.delUser(id);
+        return "redirect:/admin/user/index";
+    }
+
+
+
 
 }

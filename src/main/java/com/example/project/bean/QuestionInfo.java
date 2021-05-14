@@ -67,6 +67,8 @@ public class QuestionInfo {
 
     }
 
+    /*解析问卷选项*/
+    /*目前仅支持单选*/
     public void Parse(){
         options=new ArrayList<>();
         if(this.getType()==1){
