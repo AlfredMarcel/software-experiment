@@ -16,4 +16,5 @@ public interface UserInfoDao extends JpaRepository<UserInfo,String> {
 
     List<UserInfo> findSnoNameCollegeAuthorityByDeleteTimeIsNull();
     List<UserInfo> findByDeleteTimeIsNull();
+    List<UserInfo> findUserInfoByCollege(String college);
 }

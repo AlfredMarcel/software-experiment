@@ -11,6 +11,7 @@ import com.example.project.repository.UserInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +57,18 @@ public class UserInfoService {
     public String findCollegeByUser(String id){
         UserInfo userInfo=userInfoDao.getOne(id);
         return userInfo.getCollege();
+    }
+
+    /*从学院id找到所有属于该学院的用户,学号+姓名*/
+    public List<UserInfo> findAllUserByCollegeId(String college){
+        List<UserInfo> tmp=userInfoDao.findUserInfoByCollege(college);
+        List<UserInfo>res=new ArrayList<>();
+        for (UserInfo userInfo : tmp) {
+            if (userInfo.getDeleteTime() == null) {
+                res.add(new UserInfo(userInfo.getSno(),userInfo.getName()));
+            }
+        }
+        return res;
     }
 
     /*管理员在后台添加学生*/

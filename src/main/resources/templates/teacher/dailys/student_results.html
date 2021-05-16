@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>今日打卡情况</title>
+</head>
+<body>
+
+<a href="/teacher/index">返回</a>
+
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <h1>打卡结果为高危的用户</h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>工号</td>
+            <td>姓名</td>
+            <td>打卡时间</td>
+            <td>打卡状态</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="user : ${emergency_user}">
+            <td th:text="${user.sno}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.createTime}"></td>
+            <td th:text="高危"></td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <h1>未打卡的用户</h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>工号</td>
+            <td>姓名</td>
+            <td>打卡时间</td>
+            <td>打卡状态</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="user : ${absent_user}">
+            <td th:text="${user.sno}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.createTime}"></td>
+            <td th:text="未打卡"></td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <h1>已完成打卡的用户</h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>工号</td>
+            <td>姓名</td>
+            <td>打卡时间</td>
+            <td>打卡状态</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="user : ${healthy_user}">
+            <td th:text="${user.sno}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.createTime}"></td>
+            <td th:text="安全"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

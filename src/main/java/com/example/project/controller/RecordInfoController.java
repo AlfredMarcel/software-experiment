@@ -40,7 +40,45 @@ public class RecordInfoController {
 
     /*教师的每日打卡*/
     @GetMapping("/teacher/daily")
-    public String recordAdd(Model model, HttpServletRequest request){
+    public String recordTeaAdd(Model model, HttpServletRequest request){
+        recordAdd(model,request);
+        return "/teacher/dailys/daily";
+    }
+
+    @PostMapping("/teacher/daily")
+    public String recordTeaAddPost(@ModelAttribute RecordInfo recordInfo){
+        recordInfoService.addRecord(recordInfo);
+        /*之后，系统自动对打卡结果进行高危判定*/
+        userStatusInfoService.judgeRecord(recordInfo);
+        return "/teacher/index";
+    }
+
+    /*学生的每日打卡*/
+    @GetMapping("/student/daily")
+    public String recordStuAdd(Model model, HttpServletRequest request){
+        recordAdd(model,request);
+        return "/student/dailys/daily";
+    }
+
+    @PostMapping("/student/daily")
+    public String recordStuAddPost(@ModelAttribute RecordInfo recordInfo){
+        recordInfoService.addRecord(recordInfo);
+        /*之后，系统自动对打卡结果进行高危判定*/
+        userStatusInfoService.judgeRecord(recordInfo);
+        return "/student/index";
+    }
+
+//    /*查看历史打卡信息(需更改)*/
+//    @GetMapping("/teacher/history")
+//    public String recordHistory(HttpServletRequest request,Model model){
+//        HttpSession session=request.getSession();
+//        List<RecordInfo> recordInfos=recordInfoService.getHistory(String.valueOf(session.getAttribute("user_id")));
+//        model.addAttribute("records",recordInfos);
+//        return "/teacher/histories/history";
+//    }
+
+    /*处理打卡信息入口，教师、学生共用*/
+    private void recordAdd(Model model,HttpServletRequest request){
         /*获取session*/
         HttpSession session=request.getSession();
 
@@ -56,28 +94,7 @@ public class RecordInfoController {
         model.addAttribute("form_name",formInfo.getName());
         model.addAttribute("questions",questionInfos);
         model.addAttribute("new_record",new RecordInfo(String.valueOf(session.getAttribute("user_id")),formInfo.getId()));
-
-        return "/teacher/dailys/daily";
     }
-
-    @PostMapping("/teacher/daily")
-    public String recordAddPost(@ModelAttribute RecordInfo recordInfo){
-        recordInfoService.addRecord(recordInfo);
-        /*之后，系统自动对打卡结果进行高危判定*/
-        userStatusInfoService.judgeRecord(recordInfo);
-        return "/teacher/index";
-    }
-
-    /*查看历史打卡信息(需更改)*/
-    @GetMapping("/teacher/history")
-    public String recordHistory(HttpServletRequest request,Model model){
-        HttpSession session=request.getSession();
-        List<RecordInfo> recordInfos=recordInfoService.getHistory(String.valueOf(session.getAttribute("user_id")));
-        model.addAttribute("records",recordInfos);
-        return "/teacher/histories/history";
-    }
-
-
 
 
 

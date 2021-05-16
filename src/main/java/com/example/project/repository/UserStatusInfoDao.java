@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface UserStatusInfoDao extends JpaRepository<UserStatusInfo,String> {
 
-
+    List<UserStatusInfo> findDateConditionsByUserId(String userId);
 }

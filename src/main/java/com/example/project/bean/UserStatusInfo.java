@@ -6,6 +6,7 @@ package com.example.project.bean;
  */
 
 import lombok.Data;
+import org.dom4j.rule.Rule;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -49,6 +50,7 @@ public class UserStatusInfo {
     @Column
     private Date deleteTime;
 
+
     public UserStatusInfo(String userId,String collegeId,Integer recordId){
         this.userId=userId;
         this.collegeId=collegeId;
@@ -58,4 +60,5 @@ public class UserStatusInfo {
     public UserStatusInfo() {
 
     }
+
 }

@@ -61,4 +61,10 @@ public class UserInfo {
     public UserInfo() {
 
     }
+
+    public UserInfo(String sno,String name){
+        this.sno=sno;
+        this.name=name;
+    }
+
 }

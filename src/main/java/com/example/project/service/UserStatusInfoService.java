@@ -31,6 +31,11 @@ public class UserStatusInfoService {
     @Autowired
     private QuestionInfoService questionInfoService;
 
+    /*根据学工号查找打卡信息*/
+    public List<UserStatusInfo> findDataByUserId(String userId){
+        return userStatusInfoDao.findDateConditionsByUserId(userId);
+    }
+
     /*判定打卡表单，将结果写入status表*/
     public void judgeRecord(RecordInfo recordInfo) {
         String college_id=userInfoService.findCollegeByUser(recordInfo.getUserId());
