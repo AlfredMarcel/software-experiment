@@ -19,4 +19,6 @@ public interface QuestionInfoDao extends JpaRepository<QuestionInfo, Integer> {
 
     List<QuestionInfo> findIdNameByDeleteTimeIsNull();
 
+    String findEmergencyById(int id);
+
 }

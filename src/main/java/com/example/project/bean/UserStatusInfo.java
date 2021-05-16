@@ -28,8 +28,8 @@ public class UserStatusInfo {
     @Column(length = 20)
     private String userId;
 
-    @Column
-    private Integer collegeId;
+    @Column(length=20)
+    private String collegeId;
 
     @Column
     private Integer recordId;
@@ -38,7 +38,7 @@ public class UserStatusInfo {
     private Date date;
 
     @Column
-    private Integer condition;
+    private Integer conditions;
 
     /*自动更新时间戳*/
     @CreatedDate
@@ -48,4 +48,14 @@ public class UserStatusInfo {
     /*软删除*/
     @Column
     private Date deleteTime;
+
+    public UserStatusInfo(String userId,String collegeId,Integer recordId){
+        this.userId=userId;
+        this.collegeId=collegeId;
+        this.recordId=recordId;
+    }
+
+    public UserStatusInfo() {
+
+    }
 }

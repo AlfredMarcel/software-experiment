@@ -52,6 +52,12 @@ public class UserInfoService {
         return userInfoDao.findSnoNameCollegeAuthorityByDeleteTimeIsNull();
     }
 
+    /*查找用户的学院id*/
+    public String findCollegeByUser(String id){
+        UserInfo userInfo=userInfoDao.getOne(id);
+        return userInfo.getCollege();
+    }
+
     /*管理员在后台添加学生*/
     public void addStu(UserInfo userInfo){
         /*默认密码：123456*/

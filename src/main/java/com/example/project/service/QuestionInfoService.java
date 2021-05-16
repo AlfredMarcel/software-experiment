@@ -43,6 +43,11 @@ public class QuestionInfoService {
         return questionInfoDao.getOne(idd);
     }
 
+    /*查询单个问题的高危判定条件*/
+    public String getEmergencyFormId(Integer id){
+        return questionInfoDao.getOne(id).getEmergency();
+    }
+
     /*更新问题*/
     public void updateQuestion(QuestionInfo questionInfo){
         /*原数据传递到视图层，再回来，不在表单里的元素就没了，这个问题尚未解决*/
