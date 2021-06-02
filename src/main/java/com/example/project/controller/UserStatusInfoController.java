@@ -95,7 +95,6 @@ public class UserStatusInfoController {
 
     }
 
-
     private void getHistory(HttpServletRequest request, Model model){
         HttpSession session=request.getSession();
         List<UserStatusInfo> userStatusInfoList=userStatusInfoService.findDataByUserId(String.valueOf(session.getAttribute("user_id")));
