@@ -2,323 +2,418 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>健康信息打卡</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>健康信息打卡</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+
+    <!-- Toastr style -->
+    <link th:href="@{/css/plugins/toastr/toastr.min.css}" rel="stylesheet"/>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
+    <!-- summernote style -->
+    <link th:href="@{/css/plugins/summernote/summernote.css}" rel="stylesheet" />
+    <link th:href="@{/css/plugins/summernote/summernote-bs3.css}" rel="stylesheet" />
+
 </head>
 <body>
 
-<a href="/teacher/index">返回</a>
 
-<br><br>
-<h2 style="color:green" th:text="${form_name}"></h2>
-<br><br>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav_stu :: navigation"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="border-bottom" th:include="header :: headerTop"></div>
+        <div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
+            <div class="col-lg-10">
+                <h2>健康打卡</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a>学生模块</a>
+                    </li>
+                    <li class="active">
+                        <strong>健康打卡</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5 th:text="${form_name}"></h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form id="formTag" action="#" th:action="@{/student/daily}" method="POST" class="form-horizontal" enctype="multipart/form-data">
 
-<form class="form-horizontal" role="form" action="#" th:action="@{/student/daily}" method="post">
+                                <div hidden>
+                                    <label>
+                                        <input type="text"  th:field="${new_record.userId}" class="form-control"  placeholder="Enter college's id" >
+                                    </label>
+                                </div>
 
-    <div hidden>
-        <label>
-            <input type="text"  th:field="${new_record.userId}" class="form-control"  placeholder="Enter college's id" >
-        </label>
+                                <div hidden>
+                                    <label>
+                                        <input type="text"  th:field="${new_record.formId}" class="form-control"  placeholder="Enter college's id" >
+                                    </label>
+                                </div>
+
+                                <div class="form-group" th:each="item,item_index:${questions}">
+                                    <label class="col-sm-2 control-label" th:text="${item.content}"></label>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 1}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer1}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques1"  class="form-control" th:field="${new_record.answer1}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 2}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer2}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques2" class="form-control" th:field="${new_record.answer2}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 3}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer3}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques3" class="form-control" th:field="${new_record.answer3}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 4}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer4}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques4" class="form-control" th:field="${new_record.answer4}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 5}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer5}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques5" class="form-control" th:field="${new_record.answer5}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 6}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer6}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques6" class="form-control" th:field="${new_record.answer6}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 7}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer7}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques7" class="form-control" th:field="${new_record.answer7}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 8}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer8}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques8" class="form-control" th:field="${new_record.answer8}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 9}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer9}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques9" class="form-control" th:field="${new_record.answer9}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 10}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer10}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques10" class="form-control" th:field="${new_record.answer10}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 11}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer11}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques11" class="form-control" th:field="${new_record.answer11}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 12}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer12}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques12" class="form-control" th:field="${new_record.answer12}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 13}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer13}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques13" class="form-control" th:field="${new_record.answer13}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 14}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer14}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10"  th:if="${item.type eq 1}">
+                                            <select id="ques14" class="form-control" th:field="${new_record.answer14}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 15}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer15}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques15" class="form-control" th:field="${new_record.answer15}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 16}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer16}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques16" class="form-control" th:field="${new_record.answer16}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 17}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer17}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques17" class="form-control" th:field="${new_record.answer17}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 18}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer18}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques18" class="form-control" th:field="${new_record.answer18}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 19}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer19}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques19" class="form-control" th:field="${new_record.answer19}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10" th:if="${item_index.count eq 20}">
+                                        <div class="col-sm-10" th:if="${item.type ne 1}">
+                                            <input type="text" th:field="${new_record.answer20}" class="form-control"  placeholder="">
+
+                                        </div>
+                                        <div class="col-sm-10" th:if="${item.type eq 1}">
+                                            <select id="ques20" class="form-control" th:field="${new_record.answer20}" >
+                                                <option value="">请选择</option>
+                                                <option th:each="it,idx :${item.options}"
+                                                        th:value="${idx.index}"
+                                                        th:text="${it}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer" th:include="footer :: copyright"></div>
     </div>
+</div>
 
-    <div hidden>
-        <label>
-            <input type="text"  th:field="${new_record.formId}" class="form-control"  placeholder="Enter college's id" >
-        </label>
-    </div>
 
-    <div th:each="item,item_index:${questions}">
-        <label th:text="${item.content}"></label>
-        <div th:if="${item_index.count eq 1}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer1}" class="form-control"  placeholder="Enter college's id">
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques1" th:field="${new_record.answer1}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 2}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer2}" class="form-control"  placeholder="Enter college's id">
+<!-- Mainly scripts -->
+<script th:src="@{/js/jquery-2.1.1.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques2" th:field="${new_record.answer2}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 3}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer3}" class="form-control"  placeholder="Enter college's id">
+<!-- Peity -->
+<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques3" th:field="${new_record.answer3}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 4}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer4}" class="form-control"  placeholder="Enter college's id">
+<!-- Custom and plugin javascript -->
+<script th:src="@{/js/inspinia.js}"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques4" th:field="${new_record.answer4}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 5}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer5}" class="form-control"  placeholder="Enter college's id">
+<!-- Toastr script -->
+<script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques5" th:field="${new_record.answer5}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 6}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer6}" class="form-control"  placeholder="Enter college's id">
+<!-- common -->
+<script th:src="@{/js/common.js}"></script>
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques6" th:field="${new_record.answer6}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 7}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer7}" class="form-control"  placeholder="Enter college's id">
+<!-- SUMMERNOTE -->
+<script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques7" th:field="${new_record.answer7}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 8}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer8}" class="form-control"  placeholder="Enter college's id">
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques8" th:field="${new_record.answer8}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 9}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer9}" class="form-control"  placeholder="Enter college's id">
+<script th:inline="javascript">
+    var image = [[${item.image}]];
+    $(document).ready(function () {
+        if(image==null || image==""){
+            $("#imageCell").hide();
+            $("#imputCell").show();
+        } else {
+            $("#imageCell").show();
+            $("#imputCell").hide();
+        }
+        $("#imageCellBut").click(function(){
+            $("#imageCell").hide();
+            $("#imputCell").show();
+        });
+    });
+</script>
 
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques9" th:field="${new_record.answer9}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 10}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer10}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques10" th:field="${new_record.answer10}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 11}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer11}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques11" th:field="${new_record.answer11}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 12}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer12}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques12" th:field="${new_record.answer12}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 13}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer13}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques13" th:field="${new_record.answer13}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 14}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer14}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques14" th:field="${new_record.answer14}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 15}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer15}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques15" th:field="${new_record.answer15}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 16}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer16}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques16" th:field="${new_record.answer16}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 17}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer17}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques17" th:field="${new_record.answer17}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 18}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer18}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques18" th:field="${new_record.answer18}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 19}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer19}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques19" th:field="${new_record.answer19}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-        <div th:if="${item_index.count eq 20}">
-            <div class="col-sm-10" th:if="${item.type ne 1}">
-                <input type="text" th:field="${new_record.answer20}" class="form-control"  placeholder="Enter college's id">
-
-            </div>
-            <div class="col-sm-10" th:if="${item.type eq 1}">
-                <select id="ques20" th:field="${new_record.answer20}" >
-                    <option value="">空</option>
-                    <option th:each="it,idx :${item.options}"
-                            th:value="${idx.index}"
-                            th:text="${it}">
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div>
-            <button type="submit" class="btn btn-primary" id="btn">Submit</button>
-            <input type="reset" class="btn btn-warning" value="Reset" />
-        </div>
-    </div>
-</form>
 
 </body>
 </html>

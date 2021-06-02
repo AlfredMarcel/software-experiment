@@ -57,6 +57,7 @@ public class UserInfoController {
             /*个人信息，登录后存进session*/
             HttpSession session = request.getSession();
             session.setAttribute("user_id", new_userInfo.getSno());
+            session.setAttribute("user_name",new_userInfo.getName());
             session.setAttribute("user_college", new_userInfo.getCollege());
             session.setAttribute("user_authority", new_userInfo.getAuthority());
 
