@@ -1,34 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>User Index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>问卷信息</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+    <link th:href="@{//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css}" rel="stylesheet"/>
+
 </head>
+
 <body>
 
-<a href="/admin/form/add">问卷添加</a>
-<a href="/admin/index">返回</a>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav_admin :: navigation"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="border-bottom" th:include="header :: headerTop"></div>
+        <div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
+            <div class="col-lg-10">
+                <h2>问卷管理</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a>管理员模块</a>
+                    </li>
+                    <li class="active">
+                        <strong>问卷管理</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
 
-<div style="text-align: center;margin:0 auto;width: 1000px; ">
-    <h1>问卷表</h1>
-    <table width="100%" border="1" cellspacing="1" cellpadding="0">
-        <tr>
-            <td>问卷编号</td>
-            <td>问卷名称</td>
-            <td>问卷创建时间</td>
-            <td>问卷更新时间</td>
-            <td>操作</td>
-        </tr>
-        <!--/*@thymesVar id="learnList" type=""*/-->
-        <tr th:each="form : ${form_list}">
-            <td th:text="${form.id}"></td>
-            <td th:text="${form.name}"></td>
-            <td th:text="${form.createTime}"></td>
-            <td th:text="${form.modifyTime}"></td>
-            <td> <a th:href="@{'/admin/form/preview/'+${form.id}}">预览</a> <a th:href="@{'/admin/form/edit/'+${form.id}}">编辑</a>  <a th:href="@{'/admin/form/del/'+${form.id}}">删除</a></td>
-        </tr>
-    </table>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>问卷列表</h5>
+                            <div class="ibox-tools">
+                                <button><a href="/admin/form/add">问卷添加</a></button>
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="table-responsive">
+                                <table id="emergency" class=" table table-hover" data-page-size="10">
+                                    <thead>
+                                    <tr>
+                                        <td>问卷编号</td>
+                                        <td>问卷名称</td>
+                                        <td>问卷创建时间</td>
+                                        <td>问卷更新时间</td>
+                                        <td>操作</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <!--/*@thymesVar id="learnList" type=""*/-->
+                                    <tr th:each="form : ${form_list}">
+                                        <td th:text="${form.id}"></td>
+                                        <td th:text="${form.name}"></td>
+                                        <td th:text="${form.createTime}"></td>
+                                        <td th:text="${form.modifyTime}"></td>
+                                        <td> <button><a th:href="@{'/admin/form/preview/'+${form.id}}">预览</a></button> <button><a th:href="@{'/admin/form/edit/'+${form.id}}">编辑</a></button>  <button><a th:href="@{'/admin/form/del/'+${form.id}}">删除</a></button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" th:include="footer :: copyright"></div>
+    </div>
 </div>
 
+<!-- Mainly scripts -->
+<script th:src="@{/js/jquery-2.1.1.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Peity -->
+<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script th:src="@{/js/inspinia.js}"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+
+<!-- iCheck -->
+<script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
+
+<!-- Peity -->
+<script th:src="@{/js/demo/peity-demo.js}"></script>
+
+<!-- dataTables -->
+<script th:src="@{//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js}"></script>
+
+<!-- common -->
+<script th:src="@{/js/common.js}"></script>
+
+<script th:inline="javascript">
+    jQuery(function($){
+        $('.table').DataTable({
+
+        });
+    });
+
+
+    /*<![CDATA[*/
+
+    /*]]>*/
+</script>
+
 </body>
+
 </html>
