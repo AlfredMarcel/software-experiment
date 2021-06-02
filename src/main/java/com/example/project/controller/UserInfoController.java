@@ -38,7 +38,7 @@ public class UserInfoController {
         /*邮箱验证 没写*/
         /*添加注册用户*/
         userInfoService.addUser(userInfo);
-        return "redirect:/index";
+        return "redirect:/login";
     }
 
     /*登录*/
