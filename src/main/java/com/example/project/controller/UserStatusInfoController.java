@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: Marcel
@@ -98,6 +95,7 @@ public class UserStatusInfoController {
     private void getHistory(HttpServletRequest request, Model model){
         HttpSession session=request.getSession();
         List<UserStatusInfo> userStatusInfoList=userStatusInfoService.findDataByUserId(String.valueOf(session.getAttribute("user_id")));
+        Collections.reverse(userStatusInfoList);
         model.addAttribute("results",userStatusInfoList);
     }
 }

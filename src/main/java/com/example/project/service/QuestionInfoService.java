@@ -51,10 +51,17 @@ public class QuestionInfoService {
     /*更新问题*/
     public void updateQuestion(QuestionInfo questionInfo){
         /*原数据传递到视图层，再回来，不在表单里的元素就没了，这个问题尚未解决*/
-        questionInfo.setCreateTime(new Date());
-        /* 以下是正常代码 */
-        questionInfo.setModifyTime(new Date());
-        questionInfoDao.save(questionInfo);
+        /*目前的解决方法是再查一遍*/
+
+        QuestionInfo tmp=questionInfoDao.getOne(questionInfo.getId());
+        tmp.setContent(questionInfo.getContent());
+        tmp.setName(questionInfo.getName());
+        tmp.setType(questionInfo.getType());
+        tmp.setOptions(questionInfo.getOptions());
+        tmp.setModifyTime(new Date());
+        tmp.setEmergency(questionInfo.getEmergency());
+
+        questionInfoDao.save(tmp);
     }
 
     /*软删除*/

@@ -44,9 +44,33 @@ public class FormInfoService {
 
     /*更新问卷内容*/
     public void updateForm(FormInfo formInfo) {
-        formInfo.setCreateTime(new Date());
-        formInfo.setModifyTime(new Date());
-        formInfoDao.save(formInfo);
+        FormInfo tmp=formInfoDao.getOne(formInfo.getId());
+        tmp.setName(formInfo.getName());
+        tmp.setFormSize(formInfo.getFormSize());
+        tmp.setQues1(formInfo.getQues1());
+        tmp.setQues2(formInfo.getQues2());
+        tmp.setQues3(formInfo.getQues3());
+        tmp.setQues4(formInfo.getQues4());
+        tmp.setQues5(formInfo.getQues5());
+        tmp.setQues6(formInfo.getQues6());
+        tmp.setQues7(formInfo.getQues7());
+        tmp.setQues8(formInfo.getQues8());
+        tmp.setQues9(formInfo.getQues9());
+        tmp.setQues10(formInfo.getQues10());
+        tmp.setQues11(formInfo.getQues11());
+        tmp.setQues12(formInfo.getQues12());
+        tmp.setQues13(formInfo.getQues13());
+        tmp.setQues14(formInfo.getQues14());
+        tmp.setQues15(formInfo.getQues15());
+        tmp.setQues16(formInfo.getQues16());
+        tmp.setQues17(formInfo.getQues17());
+        tmp.setQues18(formInfo.getQues18());
+        tmp.setQues19(formInfo.getQues19());
+        tmp.setQues20(formInfo.getQues20());
+
+        tmp.setModifyTime(new Date());
+
+        formInfoDao.save(tmp);
     }
 
     /*软删除*/
