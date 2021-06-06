@@ -47,7 +47,7 @@
                         <div class="ibox-title">
                             <h5>问卷列表</h5>
                             <div class="ibox-tools">
-                                <button><a href="/admin/form/add">问卷添加</a></button>
+                                <a href="/admin/form/add"><button class="btn btn-info">问卷添加</button></a>
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
@@ -73,7 +73,7 @@
                                         <td th:text="${form.name}"></td>
                                         <td th:text="${form.createTime}"></td>
                                         <td th:text="${form.modifyTime}"></td>
-                                        <td> <button><a th:href="@{'/admin/form/preview/'+${form.id}}">预览</a></button> <button><a th:href="@{'/admin/form/edit/'+${form.id}}">编辑</a></button>  <button><a th:href="@{'/admin/form/del/'+${form.id}}">删除</a></button></td>
+                                        <td> <a th:href="@{'/admin/form/preview/'+${form.id}}"><button class="btn btn-primary btn-xs">预览</button></a> <a th:href="@{'/admin/form/edit/'+${form.id}}"><button class="btn btn-warning btn-xs">编辑</button></a>  <a th:href="@{'/admin/form/del/'+${form.id}}"><button class="btn btn-danger btn-xs">删除</button></a></td>
                                     </tr>
                                     </tbody>
                                 </table>

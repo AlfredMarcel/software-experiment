@@ -47,7 +47,7 @@
                         <div class="ibox-title">
                             <h5>问题列表</h5>
                             <div class="ibox-tools">
-                                <button><a href="/admin/question/add">问题添加</a></button>
+                                <a href="/admin/question/add"><button class="btn btn-info">问题添加</button></a>
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
@@ -58,12 +58,12 @@
                                 <table id="emergency" class=" table table-hover" data-page-size="10">
                                     <thead>
                                     <tr>
-                                        <td>问题编号</td>
-                                        <td>问题名称</td>
-                                        <td>问卷题面</td>
-                                        <td>问题类型</td>
-                                        <td>高危判定</td>
-                                        <td>操作</td>
+                                        <td width="10%">问题编号</td>
+                                        <td width="10%">问题名称</td>
+                                        <td width="30%">问卷题面</td>
+                                        <td width="10%">问题类型</td>
+                                        <td width="30%">高危判定</td>
+                                        <td width="10%">操作</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -75,7 +75,7 @@
                                         <td th:text="${question.content}"></td>
                                         <td th:text="${question.type}"></td>
                                         <td th:text="${question.emergency}"></td>
-                                        <td> <button><a th:href="@{'/admin/question/edit/'+${question.id}}">编辑</a></button>  <button><a th:href="@{'/admin/question/del/'+${question.id}}">删除</a></button></td>
+                                        <td> <a th:href="@{'/admin/question/edit/'+${question.id}}"><button class="btn btn-warning btn-xs">编辑</button></a>  <a th:href="@{'/admin/question/del/'+${question.id}}"><button class="btn btn-danger btn-xs" >删除</button></a></td>
                                     </tr>
                                     </tbody>
                                 </table>

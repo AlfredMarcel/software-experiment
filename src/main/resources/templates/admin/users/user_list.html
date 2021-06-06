@@ -47,8 +47,9 @@
                         <div class="ibox-title">
                             <h5>用户列表</h5>
                             <div class="ibox-tools">
-                                <button><a href="/admin/user/addstudent">添加学生</a></button>
-                                <button><a href="/admin/user/addteacher">添加教师</a></button>
+                                <a href="/admin/user/addstudent"><button class="btn btn-info">添加学生</button></a>
+                                <a href="/admin/user/addteacher"><button class="btn btn-info">添加教师</button></a>
+                                <a href="/admin/user/addteacher"><button class="btn btn-info">批量导入</button></a>
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
@@ -59,11 +60,11 @@
                                 <table id="emergency" class=" table table-hover" data-page-size="10">
                                     <thead>
                                     <tr>
-                                        <td>工号</td>
-                                        <td>姓名</td>
-                                        <td>学院编号</td>
-                                        <td>身份编号</td>
-                                        <td>操作</td>
+                                        <td width="20%">工号</td>
+                                        <td width="20%">姓名</td>
+                                        <td width="20%">学院编号</td>
+                                        <td width="20%">身份编号</td>
+                                        <td width="20%">操作</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -74,7 +75,7 @@
                                         <td th:text="${user.name}"></td>
                                         <td th:text="${user.college}"></td>
                                         <td th:text="${user.authority}"></td>
-                                        <td> <button><a th:href="@{'/admin/user/edit/'+${user.sno}}">编辑</a></button>  <button><a th:href="@{'/admin/user/reset/'+${user.sno}}">重置密码</a></button>  <button><a th:href="@{'/admin/user/del/'+${user.sno}}">删除</a></button></td>
+                                        <td> <a th:href="@{'/admin/user/edit/'+${user.sno}}"><button class="btn btn-warning btn-xs">编辑</button></a>  <a th:href="@{'/admin/user/reset/'+${user.sno}}"><button class="btn btn-primary btn-xs">重置密码</button></a>  <a th:href="@{'/admin/user/del/'+${user.sno}}"><button class="btn btn-danger btn-xs" >删除</button></a></td>
                                     </tr>
                                     </tbody>
                                 </table>

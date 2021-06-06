@@ -47,7 +47,7 @@
                         <div class="ibox-title">
                             <h5>学院列表</h5>
                             <div class="ibox-tools">
-                                <button><a href="/admin/college/add">学院添加</a></button>
+                                <a href="/admin/college/add"><button class="btn btn-info ">学院添加</button></a>
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
@@ -58,10 +58,10 @@
                                 <table id="emergency" class=" table table-hover" data-page-size="10">
                                     <thead>
                                     <tr>
-                                        <td>学院编号</td>
-                                        <td>学院名称</td>
-                                        <td>问卷编号</td>
-                                        <td>操作</td>
+                                        <td width="25%">学院编号</td>
+                                        <td width="25%">学院名称</td>
+                                        <td width="25%">问卷编号</td>
+                                        <td width="25%">操作</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -71,7 +71,7 @@
                                         <td th:text="${college.Id}"></td>
                                         <td th:text="${college.Name}"></td>
                                         <td th:text="${college.FormId}"></td>
-                                        <td> <button><a th:href="@{'/admin/college/edit/'+${college.Id}}">编辑</a></button>  <button><a th:href="@{'/admin/college/del/'+${college.Id}}">删除</a></button></td>
+                                        <td> <a th:href="@{'/admin/college/edit/'+${college.Id}}"><button class="btn btn-warning btn-xs">编辑</button></a>  <a th:href="@{'/admin/college/del/'+${college.Id}}"><button class="btn btn-danger btn-xs" >删除</button></a></td>
                                     </tr>
                                     </tbody>
                                 </table>
