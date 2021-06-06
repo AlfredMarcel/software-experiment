@@ -78,6 +78,8 @@ public class QuestionInfo {
             sub=sub.replaceAll("，",",");
             String[] tmp=sub.split(",");
             options.addAll(Arrays.asList(tmp));
+            /*去除题面中的选项*/
+            this.setContent(content.substring(0,content.lastIndexOf("{")));
         }
     }
 

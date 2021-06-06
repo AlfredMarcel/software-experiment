@@ -59,24 +59,29 @@
                         <div class="ibox-content">
                             <form id="formTag" action="#" th:action="@{/admin/college/add}" method="POST" class="form-horizontal" enctype="multipart/form-data">
 
-                                <div class="form-group" style="width:300px">
+                                <div class="form-group" >
                                     <label for="college_id" class="col-sm-2 control-label">学院编号</label>
                                     <div class="col-sm-10">
                                         <input type="text" th:field="${new_college.Id}" class="form-control" id="college_id" placeholder="Enter college's id">
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="width:300px">
+                                <div class="form-group" >
                                     <label for="college_name" class="col-sm-2 control-label">学院名称</label>
                                     <div class="col-sm-10">
                                         <input type="text" th:field="${new_college.Name}" class="form-control" id="college_name" placeholder="Enter college's name">
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="width:300px">
-                                    <label for="chair_name" class="col-sm-2 control-label">使用问卷</label>
+                                <div class="form-group" >
+                                    <label for="college" class="col-sm-2 control-label">使用问卷</label>
                                     <div class="col-sm-10">
-                                        <input type="text" th:field="${new_college.FormId}" class="form-control" id="chair_name" placeholder="Enter chairman's name">
+                                        <select id="college" class="form-control" th:field="${new_college.formId}">
+                                            <option value="0">请选择</option>
+                                            <option th:each="item :${forms}"
+                                                    th:value="${item.id}"
+                                                    th:text="${item.name}">
+                                        </select>
                                     </div>
                                 </div>
 

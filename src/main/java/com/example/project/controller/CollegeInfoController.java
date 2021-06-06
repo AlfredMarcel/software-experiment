@@ -7,6 +7,7 @@ package com.example.project.controller;
 
 import com.example.project.bean.CollegeInfo;
 import com.example.project.service.CollegeInfoService;
+import com.example.project.service.FormInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +26,14 @@ public class CollegeInfoController {
     @Autowired
     private CollegeInfoService collegeInfoService;
 
+    @Autowired
+    private FormInfoService formInfoService;
+
     /*添加学院*/
     @GetMapping("/admin/college/add")
     public String addCollege(Model model){
         model.addAttribute("new_college",new CollegeInfo());
+        model.addAttribute("forms",formInfoService.getAllSimpleForm());
         return "/admin/colleges/add_college_form";
     }
 
@@ -51,6 +56,7 @@ public class CollegeInfoController {
     @GetMapping("/admin/college/edit/{id}")
     public String editCollege(Model model, @PathVariable String id){
         model.addAttribute("college",collegeInfoService.getCollegeById(id));
+        model.addAttribute("forms",formInfoService.getAllSimpleForm());
         return "/admin/colleges/edit_college_form";
     }
     @PostMapping("/admin/college/edit")
