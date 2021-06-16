@@ -27,7 +27,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-success pull-right">Income</span>
-                            <h5>当前月收入(元)</h5>
+                            <h5>打卡次数</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins" th:text="10">--月收入啦啦</h1>
@@ -42,7 +42,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-info pull-right">Order</span>
-                            <h5>当前月订单数</h5>
+                            <h5>当前打卡次数</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins" th:text="10">--月订单数</h1>
@@ -56,7 +56,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-primary pull-right">Today</span>
-                            <h5>访问量</h5>
+                            <h5>登录次数</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins" th:text="10">--访问量</h1>
@@ -69,7 +69,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-danger pull-right">Refund</span>
-                            <h5>当前月退单数</h5>
+                            <h5>打卡安全状态</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins" th:text="10">80,600</h1>
@@ -249,7 +249,7 @@
 
         var dataset = [
             {
-                label: "收入(元)",
+                label: "登录次数",
                 data: data3,
                 color: "#1ab394",
                 bars: {
@@ -261,7 +261,7 @@
 
             },
             {
-                label: "订单数",
+                label: "打卡次数",
                 data: data2,
                 yaxis: 2,
                 color: "#1C84C6",

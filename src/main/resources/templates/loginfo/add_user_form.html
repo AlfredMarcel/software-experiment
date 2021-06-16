@@ -47,6 +47,15 @@
                             th:text="${item.name}">
                 </select>
             </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" th:field="${new_user.password}" placeholder="输入密码" name="password" required=""/>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" th:field="${new_user.email}" placeholder="输入邮箱" name="email" required=""/>
+            </div>
+
             <div class="form-group">
                 <div class="checkbox i-checks"><label> <input type="checkbox"/><i></i> 记住账号密码 </label></div>
             </div>
